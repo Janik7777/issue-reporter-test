@@ -51,16 +51,15 @@ def result(inputfile):
 
         if next_tile == "#":
             return False
-        elif next_tile == ".":
+        if next_tile == ".":
             my_map[next_y][next_x] = my_map[y][x]
             my_map[y][x] = "."
         else:
             move_possible = move(direction, next_x, next_y)
             if not move_possible:
                 return False
-            else:
-                my_map[next_y][next_x] = my_map[y][x]
-                my_map[y][x] = "."
+            my_map[next_y][next_x] = my_map[y][x]
+            my_map[y][x] = "."
 
         return True
 
