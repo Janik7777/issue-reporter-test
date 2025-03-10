@@ -2,10 +2,9 @@
 solve exercise
 """
 
-
-def result(inputfile):
+def read_input(inputfile):
     """
-    compute result of exercise
+    read a txt file
     """
     my_map = []
     moves = ""
@@ -20,6 +19,14 @@ def result(inputfile):
                 my_map.append(tiles)
             else:
                 moves += line.strip()
+    return my_map, moves
+
+
+def result(inputfile):
+    """
+    compute result of exercise
+    """
+    my_map, moves = read_input(inputfile)
 
     for i, row in enumerate(my_map):
         for j, value in enumerate(row):
