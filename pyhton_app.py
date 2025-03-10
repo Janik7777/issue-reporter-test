@@ -1,5 +1,5 @@
 """
-solve exercise
+solve exercise https://adventofcode.com/2024/day/15
 """
 
 def read_input(inputfile):
