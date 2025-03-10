@@ -1,5 +1,4 @@
 def result(inputfile):
-
     map = []
     moves = ""
     readingMap = True
@@ -13,65 +12,66 @@ def result(inputfile):
                 map.append(tiles)
             else:
                 moves += line.strip()
-    
+
     for i, row in enumerate(map):
         for j, value in enumerate(row):
-            if value == '@':
+            if value == "@":
                 y_robot = i
-                x_robot = j 
+                x_robot = j
 
     def move(direction, x, y):
         match direction:
-            case 'v':
+            case "v":
                 next_x = x
                 next_y = y + 1
                 nextTile = map[next_y][next_x]
-            case '^':
+            case "^":
                 next_x = x
                 next_y = y - 1
                 nextTile = map[next_y][next_x]
-            case '>':
+            case ">":
                 next_x = x + 1
                 next_y = y
                 nextTile = map[next_y][next_x]
-            case '<':
+            case "<":
                 next_x = x - 1
                 next_y = y
                 nextTile = map[next_y][next_x]
-        
-        if nextTile == '#':
+
+        if nextTile == "#":
             return False
-        elif nextTile == '.':
+        elif nextTile == ".":
             map[next_y][next_x] = map[y][x]
-            map[y][x] = '.'
+            map[y][x] = "."
         else:
             move_possible = move(direction, next_x, next_y)
             if not move_possible:
                 return False
             else:
                 map[next_y][next_x] = map[y][x]
-                map[y][x] = '.'
-        
+                map[y][x] = "."
+
         return True
 
     for direction in moves:
         if move(direction, x_robot, y_robot):
             match direction:
-                case 'v':
+                case "v":
                     y_robot += 1
-                case '^':
+                case "^":
                     y_robot -= 1
-                case '>':
+                case ">":
                     x_robot += 1
-                case '<':
+                case "<":
                     x_robot -= 1
-    
+
     result = 0
     for i, row in enumerate(map):
         for j, value in enumerate(row):
-            if value == 'O':
+            if value == "O":
                 result += 100 * i + j
-    
+
     return result
+
 
 print(result("input.txt"))
