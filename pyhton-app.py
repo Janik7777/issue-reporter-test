@@ -1,4 +1,11 @@
+'''
+solve exercise
+'''
+
 def result(inputfile):
+    '''
+    compute result of exercise
+    '''
     map = []
     moves = ""
     readingMap = True
@@ -20,6 +27,9 @@ def result(inputfile):
                 x_robot = j
 
     def move(direction, x, y):
+        """
+        make a move in the direction
+        """
         match direction:
             case "v":
                 next_x = x
