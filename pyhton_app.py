@@ -1,26 +1,27 @@
-'''
+"""
 solve exercise
-'''
+"""
+
 
 def result(inputfile):
-    '''
+    """
     compute result of exercise
-    '''
-    map = []
+    """
+    my_map = []
     moves = ""
-    readingMap = True
-    with open(inputfile) as f:
+    reading_map = True
+    with open(inputfile, encoding="utf-8") as f:
         for line in f:
-            if readingMap:
+            if reading_map:
                 if len(line) == 1:
-                    readingMap = False
+                    reading_map = False
                     continue
                 tiles = [*line.strip()]
-                map.append(tiles)
+                my_map.append(tiles)
             else:
                 moves += line.strip()
 
-    for i, row in enumerate(map):
+    for i, row in enumerate(my_map):
         for j, value in enumerate(row):
             if value == "@":
                 y_robot = i
@@ -34,32 +35,32 @@ def result(inputfile):
             case "v":
                 next_x = x
                 next_y = y + 1
-                nextTile = map[next_y][next_x]
+                next_tile = my_map[next_y][next_x]
             case "^":
                 next_x = x
                 next_y = y - 1
-                nextTile = map[next_y][next_x]
+                next_tile = my_map[next_y][next_x]
             case ">":
                 next_x = x + 1
                 next_y = y
-                nextTile = map[next_y][next_x]
+                next_tile = my_map[next_y][next_x]
             case "<":
                 next_x = x - 1
                 next_y = y
-                nextTile = map[next_y][next_x]
+                next_tile = my_map[next_y][next_x]
 
-        if nextTile == "#":
+        if next_tile == "#":
             return False
-        elif nextTile == ".":
-            map[next_y][next_x] = map[y][x]
-            map[y][x] = "."
+        elif next_tile == ".":
+            my_map[next_y][next_x] = my_map[y][x]
+            my_map[y][x] = "."
         else:
             move_possible = move(direction, next_x, next_y)
             if not move_possible:
                 return False
             else:
-                map[next_y][next_x] = map[y][x]
-                map[y][x] = "."
+                my_map[next_y][next_x] = my_map[y][x]
+                my_map[y][x] = "."
 
         return True
 
@@ -75,13 +76,13 @@ def result(inputfile):
                 case "<":
                     x_robot -= 1
 
-    result = 0
-    for i, row in enumerate(map):
+    result_of_function = 0
+    for i, row in enumerate(my_map):
         for j, value in enumerate(row):
             if value == "O":
-                result += 100 * i + j
+                result_of_function += 100 * i + j
 
-    return result
+    return result_of_function
 
 
 print(result("input.txt"))
